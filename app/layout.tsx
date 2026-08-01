@@ -4,6 +4,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import { QueryProvider } from "@/components/provider/query-provider";
+import { ClerkProvider} from '@clerk/nextjs'
+
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -34,6 +36,7 @@ export default function RootLayout({
     suppressHydrationWarning
     >
       <body>
+        <ClerkProvider>
         <QueryProvider>
           <ThemeProvider
             attribute="class"
@@ -41,10 +44,19 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+          {children}
+        
           </ThemeProvider>
           </QueryProvider>
+          </ClerkProvider>
         </body>
     </html>
   );
 }
+
+
+
+
+
+
+
